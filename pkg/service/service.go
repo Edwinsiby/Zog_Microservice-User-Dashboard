@@ -24,6 +24,7 @@ func (s *UserDashboard) MyMethod(ctx context.Context, req *pb.Request) (*pb.Resp
 
 func (s *UserDashboard) AddAddress(ctx context.Context, req *pb.AddAddressRequest) (*pb.AddAddressResponse, error) {
 	address := &entity.Address{
+		UserId:  int(req.Userid),
 		House:   req.House,
 		City:    req.City,
 		Street:  req.Street,
@@ -100,7 +101,7 @@ func (s *UserDashboard) AddToWishList(ctx context.Context, req *pb.AddToWishList
 	} else {
 		wishApparel := &entity.Wishlist{
 			UserId:      int(req.Userid),
-			Category:    apparel.Category,
+			Category:    "apparel",
 			ProductId:   apparel.ID,
 			ProductName: apparel.Name,
 			Price:       float64(apparel.Price),
@@ -397,10 +398,11 @@ func (s *UserDashboard) UserDetails(ctx context.Context, req *pb.UserDetailsRequ
 			Wallet:    int32(user.Wallet),
 		}
 		addressResp := &pb.Address{
-			House:   address.House,
-			City:    address.City,
-			Pincode: strconv.Itoa(address.Pincode),
-			Type:    address.Type,
+			House:     address.House,
+			City:      address.City,
+			Pincode:   strconv.Itoa(address.Pincode),
+			Type:      address.Type,
+			Addressid: int32(address.ID),
 		}
 		return &pb.UserDetailsResponse{User: userResp, Address: addressResp}, nil
 	} else {

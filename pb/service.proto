@@ -43,7 +43,8 @@ message AddAddressRequest{
   string city    = 2;
   string street  = 3;
   int32 pincode = 4;
-  string type    = 5; 
+  string type    = 5;
+  int32  userid  = 6; 
 }
 
 message AddAddressResponse{
@@ -67,7 +68,8 @@ message Address{
   string city    = 2;
   string street  = 3;
   string pincode = 4;
-  string type    = 5; 
+  string type    = 5;
+  int32  addressid = 6; 
 }
 
 message UserDetailsResponse{
